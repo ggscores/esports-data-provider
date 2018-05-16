@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Websockets - Subscribe to matches</title>
     <!-- YOU NEED TO UPDATE THE AUTHORIZATION TOKEN WITH THE ONE IN YOUR FREE TRIAL PAGE -->
-    <script src="https://apiv1.esports-data-provider.com:1350/js/dependencies/sails.io.js" environment="production" headers='{ "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2VkcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiNmtUN0R2T0huY0tvS29oMnUxSENTQ2hyR1owWGNwQklAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vYXBpdjEuZXNwb3J0cy1kYXRhLXByb3ZpZGVyLmNvbSIsImlhdCI6MTUyMzgwNzg0NiwiZXhwIjoxNTIzODk3ODQ2LCJhenAiOiI2a1Q3RHZPSG5jS29Lb2gydTFIQ1NDaHJHWjBYY3BCSSIsInNjb3BlIjoic2tpcDpyYXRlMTUgbGl2ZTpvdmVyd2F0Y2ggcmVzdDpvdmVyd2F0Y2ggbGl2ZTpkb3RhIHJlc3Q6ZG90YSBsaXZlOmxvbCByZXN0OmxvbCBsaXZlOmNzZ28gcmVzdDpjc2dvIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.v4SPECTz4PUBbg3Hh7MNezpgfBczwYMDu7VVgHduMUA" }'></script>
+    <script src="https://apiv1.esports-data-provider.com:1350/js/dependencies/sails.io.js" environment="production" headers='{ "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2VkcC5ldS5hdXRoMC5jb20vIiwic3ViIjoiNmtUN0R2T0huY0tvS29oMnUxSENTQ2hyR1owWGNwQklAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vYXBpdjEuZXNwb3J0cy1kYXRhLXByb3ZpZGVyLmNvbSIsImlhdCI6MTUyNjUxMDIyMywiZXhwIjoxNTI2NjAwMjIzLCJhenAiOiI2a1Q3RHZPSG5jS29Lb2gydTFIQ1NDaHJHWjBYY3BCSSIsInNjb3BlIjoic2tpcDpyYXRlMTUgbGl2ZTpvdmVyd2F0Y2ggcmVzdDpvdmVyd2F0Y2ggbGl2ZTpkb3RhIHJlc3Q6ZG90YSBsaXZlOmxvbCByZXN0OmxvbCBsaXZlOmNzZ28gcmVzdDpjc2dvIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.iaNHKl18ZtKsVPSh-EsUlJJP8v3gZjJphJFoef_kniU" }'></script>
     <script type="text/javascript">
         io.sails.url = 'https://apiv1.esports-data-provider.com:1350';
 
@@ -13,6 +13,12 @@
         io.socket.post('/subscribeToMatches', {}, function responseFromServer(body, response) {
             console.log("The server responded with status " + response.statusCode + " and said: ", body);
         });
+        
+        //Subscribe to a specific match
+        io.socket.post('/subscribeToMatch', {match_id:4998}, function responseFromServer(body, response) {
+            console.log("The server responded with status " + response.statusCode + " and said: ", body);
+        });
+        
 
         //Watch the matches and react accordingly
         io.socket.on('match', function(event) {
